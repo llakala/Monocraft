@@ -11,8 +11,8 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-import json
 import copy
+import json
 
 
 def generate_continuous_ligatures(filename):
@@ -44,14 +44,14 @@ def generate_continuous_ligatures(filename):
     continuous_ligatures = json.load(open(filename))
     out = []
     for ligature in continuous_ligatures:
-        name = f'{ligature["head_name"]} {ligature["body_name"]} '
+        name = f"{ligature['head_name']} {ligature['body_name']} "
         body_pixels = ligature["body_pixels"]
         head_pixels = ligature["head_pixels"]
-        body = [[] for _ in  range(len(body_pixels))]
-        for i in range( ligature["min_length"],ligature["max_length"] + 1):
+        body = [[] for _ in range(len(body_pixels))]
+        for i in range(ligature["min_length"], ligature["max_length"] + 1):
             glyph = {}
             # Generate ligature data
-            glyph["name"] = name + str(i); 
+            glyph["name"] = name + str(i)
             if ligature["direction"] == "right":
                 glyph["ligature"] = ligature["body"] * i + ligature["head"]
             else:

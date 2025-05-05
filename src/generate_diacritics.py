@@ -11,6 +11,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+
 def generateDiacritics(characters, diacritics):
     # Create dictionaries for faster lookup
     charactersByName = {}
@@ -31,10 +32,14 @@ def generateDiacritics(characters, diacritics):
             continue
         # Get the diacritic name
         splitOnWith = line.split("WITH")
-        diacritic = splitOnWith[1].split(';')[0].strip().lower().replace(" ", "_")
-        name = splitOnWith[0].split(';')[1].strip().lower().replace(" ", "_")
+        diacritic = splitOnWith[1].split(";")[0].strip().lower().replace(" ", "_")
+        name = splitOnWith[0].split(";")[1].strip().lower().replace(" ", "_")
         newName = name + "_with_" + diacritic
-        if not diacritic in diacriticsByCodepoint or not name in charactersByName or newName in charactersByName:
+        if (
+            not diacritic in diacriticsByCodepoint
+            or not name in charactersByName
+            or newName in charactersByName
+        ):
             continue
         codepoint = int(line.split(";")[0].strip(), 16)
         # Store in a dictionary for serialization
